@@ -1,5 +1,5 @@
 const { assert, expect } = require('chai');
-const { BaseAction } = require('../../setup/previous_conversation/baseAction');
+const { BaseAction } = require('../../setup/baseAction');
 
 
 exports.conversation = class conversation extends BaseAction {

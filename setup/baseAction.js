@@ -1,31 +1,55 @@
 //import { BaseElement } from './baseElement';
-const { expect } = require('chai');
+// const { expect } = require('chai');
 // const chai = require('chai');
 // const expect = chai.expect;
+const { expect } = require('chai');
+var chai = require('chai');
+var sinon = require('sinon');
+chai.use(require('sinon-chai'));
 
 // import 'cypress-file-upload';
 // const dayjs = require('dayjs');
 
 let defaultTimeout = 60000;
 
+
 exports.BaseAction = class BaseAction {
-    async getTextss(locator) {
-         await pageNew.locator(locator).isVisible({ timeout: defaultTimeout });
-         const textString = await pageNew.locator(locator).innerText();
-        //  console.log(textString)
-         return textString;
-        }
+
     async shouldContainTextt(text1, text2) {
-        // console.log(text1,text2)
         expect(text1).to.contain(text2);
     }
 
+    async getTextss(locator) {
+         await page.locator(locator).isVisible({ timeout: defaultTimeout });
+         const textString = await page.locator(locator).innerText();
+        //  console.log(textString);
+         return textString;
+        }
+
+    async rowIncrement(text1,count) {
+        console.log(text1,count)
+        if(text1 > count) {
+            count = text1;
+            console.log(text1,count)
+        }
+        console.log(count)
+    }
+      
+    async rowDecrement(text1,count) {
+        console.log(text1, count)
+        if(text1 < count) {
+            count = text1;
+            console.log(count + "asf");
+        }
+    }
+
     async type(locator, value) {
+        // console.log("hey")
         // await page.locator(locator).isVisible({ timeout: defaultTimeout })
         await page.fill(locator, value);
     }
 
-    async click(locator, pageType = " ", isForce = false, isMultiple = false) {
+    async click(locator, isForce = false, isMultiple = false, pageType = "") {
         // await page.locator(locator).isVisible.isEnabled;
         // isForce ?
         //     isMultiple ?
@@ -35,7 +59,7 @@ exports.BaseAction = class BaseAction {
         //         await page.locator(locator).isVisible.isEnabled.click({ multiple: true }) :
         //         await page.click();
         if (pageType == "newTab") {
-            await pageNew.click(locator, { timeOut: defaultTimeout })
+            await global.pageNew.click(locator, { timeOut: defaultTimeout })
         } else {
             await page.click(locator, { timeout: defaultTimeout })
         }
@@ -135,13 +159,32 @@ exports.BaseAction = class BaseAction {
         await page.dblclick();
     }
 
+    // await page.check(locator)
+    //     await this.wait(2);
     async checkToCheckbox(locator) {
-        await page.locator(locator).isVisible({ timeout: defaultTimeout });
-        if (page.not('[value=false]')) {
-            await page.check().expect(locator).toBeChecked();
-        } else {
-            await expect(locator).toBeChecked();
-        }
+        // await page.locator(locator).isVisible({ timeout: defaultTimeout });
+        await page.check(locator);
+        // const come_on = page.locator(locator);
+        // expect(come_on).to.be.checked(); 
+        // await page.check(locator)
+        // expect(await page.isChecked(locator)).toBeTruthy();
+        // expect(come_on).to.contain("Row checking using Automation")
+        // console.log("hey checkbox")
+        // console.log(locator)
+        // const locator2 = page.locator("afs");
+        // console.log(locator2);
+        // await page.check(locator);
+        // await this.wait(3);
+        // await expect(locator).to.be.checked;
+        // await expect(locator).toBeChecked();
+
+        // await page.locator(locator).isVisible({ timeout: defaultTimeout });
+        // console.log(locator)
+        // if (page.not('[value=false]')) {
+        //     await page.check().expect(locator).toBeChecked();
+        // } else {
+        //     await expect(locator).toBeChecked();
+        // }
     }
 
     async uncheckToCheckbox(locator) {
@@ -362,16 +405,30 @@ exports.BaseAction = class BaseAction {
     async openNewTab(url) {
         global.pageNew = await context.newPage();
         await pageNew.goto(url);
-        await this.wait(3);
+        // await this.wait(3);
         // await global.pageNew.close();
         // await global.context.close();
     }
-    async type_2(locator, value) {
-        await this.wait(2)
-        await pageNew.fill(locator, value);
-        // await global.pageNew.close();
-        // await global.context.close();
+
+    // async type_2(locator, value) {
+    //     await this.wait(2)
+    //     await pageNew.fill(locator, value);
+    //     await global.pageNew.close();
+    //     await global.context.close();
+    // }
+
+    async getNewPageTexts(locator) {
+        await pageNew.locator(locator).isVisible({ timeout: defaultTimeout });
+        const textString = await pageNew.locator(locator).innerText();
+       //  console.log(textString)
+        return textString;
     }
+
+   async shouldContainNewPageText(text1, text2) {
+       // console.log(text1,text2)
+       expect(text1).to.contain(text2);
+   }
+
     async pageEvaluate(pageType = "") {
         if (pageType == "newTab") {
             await pageNew.evaluate(() => window.FSWebChat || (function (d, s) {

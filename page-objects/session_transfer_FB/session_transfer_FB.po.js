@@ -1,5 +1,5 @@
 const { assert, expect } = require('chai');
-const { BaseAction } = require('../../setup/session_transfer_FB/baseAction');
+const { BaseAction } = require('../../setup/baseAction');
 
 
 exports.sessionTransfer = class sessionTransfer extends BaseAction {
@@ -125,7 +125,7 @@ exports.sessionTransfer = class sessionTransfer extends BaseAction {
         // await this.click(this.elements.msg, "newTab");
         await this.wait(10);
         const stringToMatch = "Hi Muthu !!";
-        await this.shouldContainTextt(await this.getTextss(this.elements.lastMsg), stringToMatch);
+        await this.shouldContainNewPageText(await this.getNewPageTexts(this.elements.lastMsg), stringToMatch);
         await pageNew.close();
         await this.wait(3);
     }

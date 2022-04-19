@@ -1,5 +1,5 @@
 const { assert, expect } = require('chai');
-const { BaseAction } = require('../../setup/change_language/baseAction');
+const { BaseAction } = require('../../setup/baseAction');
 
 exports.language = class language extends BaseAction {
 

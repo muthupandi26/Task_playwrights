@@ -1,5 +1,5 @@
 const { assert, expect } = require('chai');
-const { BaseAction } = require('../../setup/email_verification/baseAction');
+const { BaseAction } = require('../../setup/baseAction');
 const Mailosaur = require('mailosaur')
 
     // const result = Math.random().toString(36).substring(2,7);

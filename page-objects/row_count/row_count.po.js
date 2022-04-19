@@ -1,5 +1,5 @@
 const { assert, expect } = require('chai');
-const { BaseAction } = require('../../setup/rowCount/baseAction');
+const { BaseAction } = require('../../setup/baseAction');
 const Mailosaur = require('mailosaur')
 
 global.count = 1;

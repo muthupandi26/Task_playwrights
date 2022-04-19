@@ -1,5 +1,5 @@
 const { assert, expect } = require('chai');
-const { BaseAction } = require('../../setup/fileValidation/baseAction');
+const { BaseAction } = require('../../setup/baseAction');
 
 exports.file = class file extends BaseAction {
 
