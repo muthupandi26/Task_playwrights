@@ -67,9 +67,13 @@ exports.email = class email extends BaseAction {
         await this.wait(4);
     }
 
-    // async mailChecking() {
-    //     await this.check_sub();
-    // }
+    async mailChecking() {
+        // await this.authorize();
+        await this.getNewToken();
+        await this.listLabels();
+        await this.listLabels();
+        await this.printMessage();
+    }
 
     async mailCheck() {
         // Access mail using api-key

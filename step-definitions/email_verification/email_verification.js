@@ -16,8 +16,8 @@ When("User Enter the {string} role credentials", async(role) => {
 });
 
 Then("Assert the mail subject if correct", async() => {
-    // await homepageObj.mailCheck();
-    // await homepageObj.mailChecking();
+    // await emailObj.mailCheck();
+    await emailObj.mailChecking();
 })
 
 

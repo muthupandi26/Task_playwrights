@@ -6,6 +6,6 @@ const common = `
   `;
 
 module.exports = {
-  // default: `${common} features/**/*.feature`
-  default: `${common} features/**/*Row_count.feature`
+  default: `${common} features/**/*.feature`
+  // default: `${common} features/**/*email_verification_check.feature`
 };
